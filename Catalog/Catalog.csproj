@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web"> <!--Aca se indica que estamos construyendo el proyecto en el SDK de DotNet--> 
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>  <!-- Define las API que estaran disponibles para el proyecto -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" /> <!-- Dependencias de este proyecto -->
+  </ItemGroup>
+
+</Project>
+
+
