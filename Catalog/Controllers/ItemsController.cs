@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+
 using Catalog.Dtos;
 using Catalog.Entities;
 using Catalog.Repositories;
-using Microsoft.AspNetCore.Mvc;
 
 
 namespace Catalog.Controllers  // Aca se reciben las peticiones y se controlan
 {
 
     // "ControllerBase" -> Se importa "Microsoft.AspNetCore.Mvc"; hara que  el archivo
-    // se una clase controladora 
+    // sea una clase controladora 
 
     [ApiController]  // Da comportamiento adicionales a la clase controladora
     [Route("items")] // URL donde el controlador enviara las respuestas
@@ -19,7 +20,8 @@ namespace Catalog.Controllers  // Aca se reciben las peticiones y se controlan
     {
          private readonly IItemsRepository repository; // Interfaz del repository
 
-         public ItemsController(IItemsRepository repository)
+         // aca se hizo  la inyeccion de la dependecia 
+         public ItemsController(IItemsRepository repository) 
          {
              this.repository = repository;
          }
@@ -27,15 +29,9 @@ namespace Catalog.Controllers  // Aca se reciben las peticiones y se controlan
          // GET /items 
             [HttpGet] // Debe especificarse el tipo de peticion
          public IEnumerable<ItemDto> GetItems(){
-
-            var items = repository.GetItems().Select(item => new ItemDto
-            {
-                Id          = item.Id,
-                Name        = item.Name,
-                Price       = item.Price,
-                CreatedDate = item.CreatedDate,
-            });
-
+            
+            // Se uso el metodo definido en "Extensions"
+            var items = repository.GetItems().Select(item => item.AsDto());
             return items;
          }
 
@@ -43,7 +39,7 @@ namespace Catalog.Controllers  // Aca se reciben las peticiones y se controlan
          // "ActionResult" permitira retornar mas de un tipo de este metodo
          // GET /items/id
         [HttpGet("{id}")]
-         public ActionResult<Item> GetItem(Guid id)
+         public ActionResult<ItemDto> GetItem(Guid id)
          {
              var item = repository.GetItem(id);
              
@@ -51,7 +47,7 @@ namespace Catalog.Controllers  // Aca se reciben las peticiones y se controlan
              {
                  return NotFound();
              }
-             return item;
+             return item.AsDto();
          }
     
     }

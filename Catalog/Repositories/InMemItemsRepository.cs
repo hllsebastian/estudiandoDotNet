@@ -13,7 +13,7 @@ namespace Catalog.Repositories
     {
 
         // "List" -> importar System.Collections.Generic
-        // "CreatedDate = DateTimeOffset.UtcNow" hora en el momento
+        // "CreatedDate = DateTimeOffset.UtcNow" es la fecha y hora en el momento
         private readonly List<Item> items = new()
         {
             new Item { Id = Guid.NewGuid(), Name = "Crash 3", Price = 19, CreatedDate = DateTimeOffset.UtcNow },
@@ -30,9 +30,13 @@ namespace Catalog.Repositories
         // Se importa "System.Linq" para usar el "Where"
         public Item GetItem(Guid id) // Obteniendo item por id
         {
+            // Con el "SingleOrDefault()", retornara solo el valor del id, si no se define, retornara la coleccion de datos
             return items.Where(item => item.Id == id).SingleOrDefault();
         }
 
-
+        public void CreateItem(Item item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

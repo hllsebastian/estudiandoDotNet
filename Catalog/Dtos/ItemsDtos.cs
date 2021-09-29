@@ -1,6 +1,8 @@
 using System;
 
-// Contrato de nuestros servicios con el cliente
+// Contrato de nuestros servicios con el cliente. Su funcion es mantener la conexion
+// entre el cliente y el servicio, cuando se hace alguna modificacion a los datos almacenados.
+// Lo que se hara es que este nuevo modelo se definira en el controller.  
 
 namespace Catalog.Dtos
 {   
