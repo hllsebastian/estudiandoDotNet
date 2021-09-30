@@ -13,6 +13,10 @@ namespace Catalog.Repositories
         // crear nuevo item
         void CreateItem(Item item);
         // Para actualizar item
+        void UpdateItem(Item item);
+        // Para borrar el item 
+        void DeleteItem(Guid id);
+
     }
     
 }
