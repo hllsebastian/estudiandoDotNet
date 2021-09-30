@@ -38,5 +38,6 @@ namespace Catalog.Repositories
         {
             throw new NotImplementedException();
         }
+
     }
 }

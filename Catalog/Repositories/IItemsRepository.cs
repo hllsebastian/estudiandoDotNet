@@ -12,6 +12,7 @@ namespace Catalog.Repositories
         IEnumerable<Item> GetItems();
         // crear nuevo item
         void CreateItem(Item item);
+        // Para actualizar item
     }
     
 }
